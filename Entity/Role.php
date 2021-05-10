@@ -3,7 +3,7 @@
 namespace Entity;
 use Classes\DB;
 
-class Roles {
+class Role {
 
 
     private ?int $id;

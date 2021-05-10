@@ -8,14 +8,14 @@ require_once $_SERVER['DOCUMENT_ROOT']."/Classes/DB.php";
 // my items ...
 
 require_once $_SERVER['DOCUMENT_ROOT']."/Entity/Article.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/Entity/Roles.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/Entity/Role.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/Entity/User.php";
 
 
 // my Manager ...
 
 require_once $_SERVER['DOCUMENT_ROOT']."/Manager/ArticleM.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/Manager/RolesM.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/Manager/RoleM.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/Manager/UserM.php";
 
 
@@ -23,9 +23,9 @@ require_once $_SERVER['DOCUMENT_ROOT']."/Manager/UserM.php";
 // Entity \user -> connect to database "projet_back->table(user)" ...
 
 use Entity\Article;
-use Entity\Roles;
+use Entity\Role;
 use Entity\User;
-use projet_back\Manager\RolesM;
+use projet_back\Manager\RoleM;
 use projet_back\Manager\UserM;
 use projet_back\Manager\ArticleM;
 
@@ -78,21 +78,21 @@ echo '</pre>';
 
 // creat roles ...
 
-$role4 = new Roles(null,'VIEW');
-$RolesM = new RolesM();
-//$RolesM->addRoles($role3);
+$role4 = new Role(null,'VIEW');
+$RoleM = new RoleM();
+//$RoleM->addRoles($role3);
 
 
 // GET all roles ...
 
 echo '<pre>';
-print_r($RolesM->getAllRoles());
+print_r($RoleM->getAllRoles());
 echo '</pre>';
 
 // get simple roles ...
 
 echo '<pre>';
-print_r($RolesM->getRoles(4));
+print_r($RoleM->getRoles(4));
 echo '</pre>';
 
 

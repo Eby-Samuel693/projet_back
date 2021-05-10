@@ -3,15 +3,15 @@
 
 namespace projet_back\Manager;
 
-use Entity\Roles;
+use Entity\Role;
 use Classes\DB;
 
 
 
-class RolesM {
+class RoleM {
 
 
-    public function addRoles (Roles $roles) {
+    public function addRoles (Role $roles) {
         $request = DB::getInstance()->prepare("INSERT INTO roles(name) 
                                                         VALUE(:roles)");
         $request->bindValue(':roles',$roles->getRoles());
@@ -30,7 +30,7 @@ class RolesM {
         if($result) {
             $data = $request->fetchAll();
             foreach ($data as $roles_data) {
-                $roles[] = new roles($roles_data['id'],$roles_data['name']);
+                $roles[] = new Role($roles_data['id'],$roles_data['name']);
             }
         }
         return $roles;
@@ -47,7 +47,7 @@ class RolesM {
         $request->execute();
         $roles_data = $request->fetch();
         if ($roles_data) {
-            $roles[] = new Roles($roles_data['id'],$roles_data['name']);
+            $roles[] = new Role($roles_data['id'],$roles_data['name']);
         }
         return $roles;
     }
