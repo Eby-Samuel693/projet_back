@@ -2,6 +2,8 @@
 
 namespace Entity;
 
+use Classes\DB;
+
 class Article {
 
 
@@ -10,7 +12,7 @@ class Article {
     private string $article;
     private int $user_fk;
 
-    public function __construct(int $id  ,string $name,string  $article ,int  $user_fk) {
+    public function __construct(?int $id = null ,string $name,string  $article ,int  $user_fk) {
         $this->id = $id;
         $this->name = $name;
         $this->article = $article;

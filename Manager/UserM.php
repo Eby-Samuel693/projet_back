@@ -10,7 +10,7 @@ use Classes\DB;
 
 class UserM
 {
-
+        // GET all user
     public function getAll() {
         $user = [];
         $request = DB::getInstance()->prepare("SELECT * FROM user");
@@ -24,6 +24,7 @@ class UserM
         return $user;
     }
 
+    // GET simple user
     public function getuser(int $id) {
         $user = [];
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id=:id");
@@ -36,7 +37,7 @@ class UserM
         return $user;
     }
 
-// add one user to database
+// add simple user to database
 
     public function addUser (User $user) {
         $request = DB::getInstance()->prepare("INSERT INTO user(name,password,role_fk) 
