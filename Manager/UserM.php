@@ -50,5 +50,13 @@ class UserM
         }
     }
 
+    public function deleteUser(int $id) {
+        $request = DB::getInstance()->prepare("DELETE FROM user WHERE id = :id");
+        $request->bindValue(':id', $id);
+        if ($request->execute()) {
+            echo "l'utilisateur a bien était supprimé !";
+        }
+    }
+
 }
 

@@ -1,48 +1,56 @@
 <?php
 
+namespace Entity;
+use Classes\DB;
+
 class Roles {
 
 
     private ?int $id;
-    private $roles;
+    private $name;
 
-    public function __construct(?int $id ,string $roles) {
+    public function __construct(?int $id = null ,string $name) {
         $this->id = $id;
-        $this->roles = $roles;
+        $this->name = $name;
     }
 
-
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int|null $id
      */
-    public function setId($id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRoles()
+    public function getName(): string
     {
-        return $this->roles;
+        return $this->name;
     }
 
     /**
-     * @param mixed $roles
+     * @param string $name
      */
-    public function setRoles($roles): void
+    public function setName(string $name): void
     {
-        $this->roles = $roles;
+        $this->name = $name;
     }
+
+
+
+
+
+
 
 
 

@@ -13,7 +13,7 @@ class ArticleM {
 
     public function addArticle (Article $article) {
         $request = DB::getInstance()->prepare("INSERT INTO article(name,article,user_fk) 
-                                                     VALUE(:name,:article,:user_fk)");
+                                                   VALUE(:name,:article,:user_fk)");
         $request->bindValue(':name',$article->getName());
         $request->bindValue(':article',$article->getArticle());
         $request->bindValue(':user_fk',$article->getUserFk());
@@ -22,6 +22,7 @@ class ArticleM {
         }
     }
 
+    // GET article to database ....
     public function getarticle(int $id) {
         $article = [];
         $request = DB::getInstance()->prepare("SELECT * FROM article WHERE id=:id");
