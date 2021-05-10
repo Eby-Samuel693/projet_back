@@ -1,53 +1,52 @@
 <?php
 
 
-namespace projet_black\Manager;
+namespace projet_back\Manager;
+
 
 use Entity\User;
 use Classes\DB;
-use PDO;
 
 
 class UserM
 {
 
-    public function __construct() {
-        $this->DB = DB::getInstance();
-
+    public function getAll() {
+        $user = [];
+        $request = DB::getInstance()->prepare("SELECT * FROM user");
+        $result = $request->execute();
+        if($result) {
+            $data = $request->fetchAll();
+            foreach ($data as $user_data) {
+                $user[] = new User($user_data['id'],$user_data['name'],$user_data['password'],$user_data['role_fk']);
+            }
+        }
+        return $user;
     }
 
-    public function getuser(?int $id): user {
+    public function getuser(int $id) {
+        $user = [];
         $request = DB::getInstance()->prepare("SELECT * FROM user WHERE id=:id");
         $request->bindValue(':id', $id);
         $request->execute();
         $user_data = $request->fetch();
-        $user = new user();
         if ($user_data) {
-            $user->setId($user_data['id']);
-            $user->setName($user_data['name']);
-            $user->setPassword($user_data['password']);
-            $user->setRoleFk($user_data['roles_fk']);
+            $user[] = new User($user_data['id'],$user_data['name'],$user_data['password'],$user_data['role_fk']);
         }
         return $user;
     }
 
 // add one user to database
 
-    public function addUser (?int $id) {
-        $this->User = new User();
-        $request = DB::getInstance()->prepare("INSERT INTO user(id,name,password,role_fk) 
-                                                     VALUE(?,?,?,?)");
-        $request->bindValue(':id', $id);
-        $request->execute();
-        $user_data = $request->fetch();
-        $user = new user();
-        if ($user_data) {
-            $user->setId($user_data['id']);
-            $user->setName($user_data['raptorn']);
-            $user->setPassword($user_data['password']);
-            $user->setRoleFk($user_data['ADMIN']);
+    public function addUser (User $user) {
+        $request = DB::getInstance()->prepare("INSERT INTO user(name,password,role_fk) 
+                                                     VALUE(:name,:password,:role_fk)");
+        $request->bindValue(':name',$user->getName());
+        $request->bindValue(':password',$user->getPassword());
+        $request->bindValue(':role_fk',$user->getRoleFk());
+        if($request->execute()) {
+           echo 'utilisateur ajouté';
         }
-        return $user;
     }
 
 }

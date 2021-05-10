@@ -14,8 +14,7 @@ class User {
     private string $password;
     private string $role_fk;
 
-    public function __construct(?int $id  ,string $name ,string $password , string $role_fk) {
-        $this->DB = DB::getInstance();
+    public function __construct(?int $id = null ,string $name ,string $password , string $role_fk) {
         $this->id = $id;
         $this->name = $name;
         $this->password = $password;
